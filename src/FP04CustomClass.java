@@ -77,6 +77,46 @@ public class FP04CustomClass {
                         .sorted(compareByNoOfStudentsAndNoOfReviews)
                         .collect(Collectors.toList())
         );
+
+        // Pick up the top 5 courses
+        System.out.println(
+                courses.stream()
+                        .sorted(compareByNoOfStudentsAndNoOfReviews)
+                        .limit(5)
+                        .collect(Collectors.toList())
+        );
+
+        // Skip top 3 results
+        System.out.println(
+                courses.stream()
+                        .sorted(compareByNoOfStudentsAndNoOfReviews)
+                        .skip(3)
+                        .collect(Collectors.toList())
+        );
+
+        // Skip top 3 results and get the next five courses
+        System.out.println(
+                courses.stream()
+                        .sorted(compareByNoOfStudentsAndNoOfReviews)
+                        .skip(3)
+                        .limit(5)
+                        .collect(Collectors.toList())
+        );
+
+        System.out.println(courses);
+
+        //Take all elements until I'll find a element which is having a review course less than 95
+        System.out.println(
+                courses.stream()
+                        .takeWhile(course -> course.getReviewScore() >= 95)
+                        .collect(Collectors.toList())
+        );
+
+        System.out.println(
+                courses.stream()
+                        .dropWhile(course -> course.getReviewScore() >= 95)
+                        .collect(Collectors.toList())
+        );
     }
 
 }
