@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -206,6 +207,35 @@ public class FP04CustomClass {
                         .filter(reviewScoreGreaterThan95Predicate)
                         .mapToInt(Course::getNoOfStudents)
                         .min()
+        );
+
+        // Grouping courses by a criteria
+        System.out.println(
+                courses.stream()
+                        .collect(Collectors.groupingBy(Course::getCategory))
+        );
+
+        System.out.println(
+                courses.stream()
+                        .collect(Collectors.groupingBy(Course::getCategory, Collectors.counting()))
+        );
+
+        Map<String, Long> mapa = courses.stream()
+                .collect(Collectors.groupingBy(Course::getCategory, Collectors.counting()));
+        System.out.println(mapa);
+
+        System.out.println(
+                courses.stream()
+                        .collect(
+                                Collectors.groupingBy(Course::getCategory,
+                                Collectors.maxBy(Comparator.comparing(Course::getReviewScore))))
+        );
+
+        System.out.println(
+                courses.stream()
+                        .collect(
+                                Collectors.groupingBy(Course::getCategory,
+                                        Collectors.mapping(Course::getName, Collectors.toList())))
         );
     }
 
