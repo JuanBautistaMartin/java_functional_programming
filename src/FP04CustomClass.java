@@ -117,6 +117,60 @@ public class FP04CustomClass {
                         .dropWhile(course -> course.getReviewScore() >= 95)
                         .collect(Collectors.toList())
         );
+
+        // Find the max course defined by max criteria
+        // Max return the last element in the list
+        System.out.println(
+                courses.stream()
+                        .max(compareByNoOfStudentsAndNoOfReviews).orElse(null));
+        // Min returns the first element in the list
+        System.out.println(
+                courses.stream()
+                        .min(compareByNoOfStudentsAndNoOfReviews).orElse(null));
+
+        //Returning optionalEmpty
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreLessThan90Predicate)
+                        .min(compareByNoOfStudentsAndNoOfReviews));
+
+        // Returning a default one if there is no course that matches the filter
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreLessThan90Predicate)
+                        .min(compareByNoOfStudentsAndNoOfReviews)
+                        .orElse(
+                                new Course("Kubernetes", "Cloud", 91, 20000)
+                        )
+        );
+
+        // Find the first element which meats a specific criteria
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreLessThan90Predicate)
+                        .findFirst()
+        );
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreGreaterThan95Predicate)
+                        .findFirst()
+        );
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreGreaterThan95Predicate)
+                        .findAny()
+        );
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreLessThan90Predicate)
+                        .findFirst()
+                        .orElse(
+                                new Course("Kubernetes", "Cloud", 91, 20000)
+                        )
+        );
     }
 
 }
