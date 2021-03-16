@@ -171,6 +171,42 @@ public class FP04CustomClass {
                                 new Course("Kubernetes", "Cloud", 91, 20000)
                         )
         );
+
+        // Get total number of courses who are in courses whose review score is greater than 95
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreGreaterThan95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                .sum()
+        );
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreGreaterThan95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .average()
+        );
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreGreaterThan95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .count()
+        );
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreGreaterThan95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .max()
+        );
+
+        System.out.println(
+                courses.stream()
+                        .filter(reviewScoreGreaterThan95Predicate)
+                        .mapToInt(Course::getNoOfStudents)
+                        .min()
+        );
     }
 
 }
