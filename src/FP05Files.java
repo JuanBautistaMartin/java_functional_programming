@@ -24,6 +24,18 @@ public class FP05Files {
                 .sorted()
                 .forEach(System.out::println);
 
+        System.out.println("==========================================");
+
+        // Get all the files
+        Files.list(Paths.get("."))
+                .forEach(System.out::println);
+
+        System.out.println("==========================================");
+
+        // Get only the directories
+        Files.list(Paths.get("."))
+                .filter(Files::isDirectory)
+                .forEach(System.out::println);
     }
 
 }
